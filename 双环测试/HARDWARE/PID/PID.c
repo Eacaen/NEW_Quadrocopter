@@ -29,6 +29,8 @@ extern Gyro gyro;
 extern int Power;			//油门
 float integrator; 
 
+extern float M_deal1,M_deal2,M_deal3,M_deal4;
+
 enum {
     ROLL = 0,
     PITCH,
@@ -111,7 +113,9 @@ void ANO_FlyControl_Attitude_Outter_Loop(void)
 	
 	//得到外环PID输出
 	RateError[ROLL] = get_out_p(errorAngle[ROLL]) - gyro.x;
-	RateError[PITCH] = get_out_p(errorAngle[PITCH]) - gyro.y;
+	
+// 	RateError[PITCH] = get_out_p(errorAngle[PITCH]) - gyro.y;
+	RateError[PITCH] = 0;
 // 	RateError[YAW] = ((int32_t)(yawRate) * EA_command.Yaw)  - gyro.z;		
 	
 // 	printf("%d  %.1f\r\n",RateError[ROLL],gyro.x);
@@ -140,6 +144,7 @@ void ANO_FlyControl_Attitude_Inner_Loop(void)
 	//PID输出转为电机控制量
 	if(FLY)
 	{
+		
 		MM_Drive(PIDTerm[ROLL], PIDTerm[PITCH], PIDTerm[YAW]);
 	}else
 	{											   

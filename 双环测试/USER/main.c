@@ -77,10 +77,10 @@ extern float M_deal1,M_deal2,M_deal3,M_deal4;
 		{
 			suanfa();
 				PID_Deal( );
-			
-				printf("%.1f  %.1f  %.1f  %.1f  ",M_deal4,M_deal1,M_deal2,M_deal3);
+			printf("%.1f   %.1f   %.1f\r\n",gyro.x,M_deal4,M_deal1 );
+// 				printf("%.1f  %.1f  %.1f  %.1f  ",M_deal4,M_deal1,M_deal2,M_deal3);
 
-			printf("%.2lf  %.2lf  %.2lf\r\n",EA.Roll,EA.Pitch,EA.Yaw);	
+// 			printf("%.2lf  %.2lf  %.2lf\r\n",EA.Roll,EA.Pitch,EA.Yaw);	
 // 			TIM_Cmd(TIM4, ENABLE);
 			Data_Receive_Anl();
 		}
