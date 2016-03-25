@@ -1,0 +1,5 @@
+-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\KEY -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\PWM -I..\HARDWARE\PID -I..\HARDWARE\NRF24L01 -I..\HARDWARE\SPI -I..\HARDWARE\EXTI -I..\HARDWARE\HMC5883 -I..\HARDWARE\IIC -I..\HARDWARE\MPU6050 -I..\HARDWARE\WithoutKerman -I..\HARDWARE\Motor -I..\HARDWARE\Data_Transfer 
+-I "C:\MDK 4.70\ARM\RV31\INC" 
+-I "C:\MDK 4.70\ARM\CMSIS\Include" 
+-I "C:\MDK 4.70\ARM\Inc\ST\STM32F10x" 
+-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o "..\OBJ\data_transfer.o" --omf_browse "..\OBJ\data_transfer.crf" --depend "..\OBJ\data_transfer.d" "..\HARDWARE\Data_Transfer\Data_Transfer.c"

@@ -8,11 +8,7 @@ u8 LOCK=1,UN_LOCK = 1;
 u8 first_unlock = 0;
 
 extern int Power;										//油门
-extern float kP_out;
-extern float kP;
-extern float kI;
-extern float kD;	
-
+extern PID Pitch_out,Roll_out,Pitch_inner,Roll_inner;
 float Target_x,Target_y,Target_yaw;		//目标值 
 extern EularAngle EA_command;
 
@@ -162,7 +158,7 @@ void Data_Receive_Anl()
 void msg_check_2()
 {
 	
-	char a[6][40];
+	char a[20][40];
 	int i=0,t=0,u=0,num=0;
 // 	if(NRF24L01_RxPacket(tmp_buf)==0)//一旦接收到信息,则显示出来.
 // 		{
@@ -198,13 +194,21 @@ void msg_check_2()
 					
 			}
 	Power  = atof(a[0]);
-	kP_out = atof(a[1]);
-	kP = atof(a[2]);
-	kI = atof(a[3]);
-  kD = atof(a[4]);		
+	Pitch_out.Kp = atof(a[1]);//3.5
+	Pitch_out.Ki = atof(a[2]);
+	Pitch_out.Kd = atof(a[3]);
+	Pitch_inner.Kp = atof(a[4]);//0.7
+	Pitch_inner.Ki = atof(a[5]);//0.5
+	Pitch_inner.Kd = atof(a[6]);//0.03
 
-	printf("%d %.2f %.2f %.2f %.2f\r\n",Power,kP_out,kP,kI,kD);			
-	for(i=0;i<u+1;i++)
+	Roll_out.Kp =	Pitch_out.Kp ;
+	Roll_out.Ki =	Pitch_out.Ki ;
+	Roll_out.Kd =	Pitch_out.Kd ;
+	Roll_inner.Kp =	Pitch_inner.Kp;//
+	Roll_inner.Ki =	Pitch_inner.Ki;
+	Roll_inner.Kd =	Pitch_inner.Kd;
+
+			for(i=0;i<u+1;i++)
 		{
 			for(num = 0;num< 20;num++)a[i][num] = NULL;
 		}		
