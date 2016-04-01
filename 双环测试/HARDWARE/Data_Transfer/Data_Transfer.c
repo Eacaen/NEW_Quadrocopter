@@ -197,6 +197,7 @@ void msg_check_2()
 	Pitch_out.Kp = atof(a[1]);//3.5
 	Pitch_out.Ki = atof(a[2]);
 	Pitch_out.Kd = atof(a[3]);
+			
 	Pitch_inner.Kp = atof(a[4]);//0.7
 	Pitch_inner.Ki = atof(a[5]);//0.5
 	Pitch_inner.Kd = atof(a[6]);//0.03

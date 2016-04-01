@@ -17,7 +17,7 @@ typedef struct PID
 		
 } PID;
 void PID_Deal(void);
-
+void PID_Parameter_Init(void);
 
 #endif
 

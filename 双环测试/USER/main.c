@@ -53,12 +53,12 @@ extern float M_deal1,M_deal2,M_deal3,M_deal4;
 	InitMPU6050();
 	Init_HMC5883();
 	suanfa_GetOrigin(); //初始欧拉角 
-	
+	PID_Parameter_Init();
 
 	
 	TIM4_Int_Init(49,7199);	  		//PID调速中断 放在最后初始化，防止打断角度校准 200hz 0.005s
-	LOCK = 0;
-	UN_LOCK = 1;
+	LOCK = 1;
+	UN_LOCK = 0;
 	
 	while(1){
 		
@@ -76,11 +76,11 @@ extern float M_deal1,M_deal2,M_deal3,M_deal4;
 		if(UN_LOCK)
 		{
 			suanfa();
-				PID_Deal( );
-			printf("%.1f   %.1f   %.1f\r\n",gyro.x,M_deal4,M_deal1 );
+			PID_Deal( );
+// 			printf("%.1f   %.1f   %.1f\r\n",gyro.x,M_deal4,M_deal1 );
 // 				printf("%.1f  %.1f  %.1f  %.1f  ",M_deal4,M_deal1,M_deal2,M_deal3);
 
-// 			printf("%.2lf  %.2lf  %.2lf\r\n",EA.Roll,EA.Pitch,EA.Yaw);	
+			printf("%.2lf  %.2lf  %.2lf\r\n",EA.Roll,EA.Pitch,EA.Yaw);	
 // 			TIM_Cmd(TIM4, ENABLE);
 			Data_Receive_Anl();
 		}
